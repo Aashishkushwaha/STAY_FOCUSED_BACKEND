@@ -55,7 +55,7 @@ const loginUser = async (req, res) => {
     return res.status(400).json({ code: 400, message: "Invalid credentials" });
 
   const token = await jwt.sign({ username }, process.env.JWT_SECRET, {
-    expiresIn: 60 * 60, // 60 min
+    expiresIn: 60 * 30, // 30 min
   });
 
   return res.json({ message: "Logged in successfully", token });

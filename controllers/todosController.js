@@ -10,12 +10,16 @@ const addTodo = async (req, res) => {
   if (!text)
     return res
       .status(400)
-      .json({ code: 400, message: "Please provide text for todo item" });
+      .json({ code: 400, message: "Please provide text for todo item." });
   if (text.length > 35)
-    return res.status(400).json({ code: 400, message: "Todo text is to long" });
+    return res
+      .status(400)
+      .json({ code: 400, message: "Todo text is to long." });
 
   const todo = await new Todo({ text }).save();
-  return res.status(201).json({ message: "todo added successfully", todo });
+  return res
+    .status(201)
+    .json({ message: "Todo item added successfully.", todo });
 };
 
 const updateTodo = async (req, res) => {
@@ -32,11 +36,13 @@ const updateTodo = async (req, res) => {
     if (!modifiedCount)
       return res
         .status(400)
-        .json({ code: 400, message: "Please provide accurate details" });
+        .json({ code: 400, message: "Please provide accurate details." });
 
-    return res.status(200).json({ message: "todo item details updated" });
+    return res
+      .status(200)
+      .json({ message: "Todo item details updated successfully." });
   } catch (err) {
-    return res.status(500).json({ code: 500, message: err.message });
+    return res.status(401).json({ code: 401, message: err.message });
   }
 };
 
@@ -47,17 +53,17 @@ const deleteTodo = async (req, res) => {
     if (!_id)
       res
         .status(400)
-        .json({ code: 400, message: "Please provide all details" });
+        .json({ code: 400, message: "Please provide all details." });
 
     const { deletedCount } = await Todo.deleteOne({ _id });
 
     if (deletedCount)
       return res
         .status(200)
-        .json({ message: "todo item details deleted successfully" });
-    return res.status(200).json({ message: "todo item details not found" });
+        .json({ message: "Todo item details deleted successfully." });
+    return res.status(200).json({ message: "Todo item details not found." });
   } catch (err) {
-    return res.status(500).json({ code: 500, message: err.message });
+    return res.status(401).json({ code: 401, message: err.message });
   }
 };
 

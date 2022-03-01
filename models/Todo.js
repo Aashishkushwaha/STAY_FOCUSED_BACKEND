@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const todoSchema = new mongoose.Schema(
   {
-    isCompleted: {
+    completed: {
       type: Boolean,
       default: false,
     },
