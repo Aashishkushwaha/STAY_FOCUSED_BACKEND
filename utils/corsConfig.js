@@ -2,6 +2,7 @@ const whitelist = [
   "http://localhost:5000",
   "http://localhost:3000",
   "https://stay-focused.vercel.app",
+  "https://stay--focused.herokuapp.com/",
 ];
 
 const corsOptions = {
