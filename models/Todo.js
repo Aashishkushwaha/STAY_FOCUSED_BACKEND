@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const todoSchema = new mongoose.Schema(
   {
+    userId: mongoose.Types.ObjectId,
     completed: {
       type: Boolean,
       default: false,

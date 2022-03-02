@@ -11,7 +11,7 @@ const authMiddleware = async (req, res, next) => {
     if (!decodedUser)
       return res.status(401).json({ code: 401, message: "Unauthorized" });
 
-    req.username = decodedUser.username;
+    req.userId = decodedUser.userId;
 
     next();
   } catch (err) {

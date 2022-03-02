@@ -1,7 +1,7 @@
 const Todo = require("../models/Todo");
 
 const getTodos = async (req, res) => {
-  const todos = await Todo.find({});
+  const todos = await Todo.find({ userId: req.userId });
   return res.json({ todos });
 };
 
@@ -16,7 +16,7 @@ const addTodo = async (req, res) => {
       .status(400)
       .json({ code: 400, message: "Todo text is to long." });
 
-  const todo = await new Todo({ text }).save();
+  const todo = await new Todo({ text, userId: req.userId }).save();
   return res
     .status(201)
     .json({ message: "Todo item added successfully.", todo });
